@@ -8,14 +8,25 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import { configureStore } from '@reduxjs/toolkit';
 import { contactsApi } from 'redux/contactsApi';
-import { filterSlice } from 'redux/filter/filterSlice';
+import { authApi } from './auth/authApi';
+import { authSlice } from './auth/auth-slice';
+
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['tpken'],
+};
+
+const authReducer = persistReducer(authPersistConfig, authSlice.reducer);
 
 export const store = configureStore({
   reducer: {
     [contactsApi.reducerPath]: contactsApi.reducer,
-    filter: filterSlice.reducer,
+    [authApi.reducerPath]: authApi.reducer,
+    auth: authReducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
@@ -24,7 +35,8 @@ export const store = configureStore({
       },
     }),
     contactsApi.middleware,
-    
+    authApi.middleware,
   ],
 });
+
 export const persistor = persistStore(store);
