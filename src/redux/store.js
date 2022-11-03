@@ -10,7 +10,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { configureStore } from '@reduxjs/toolkit';
-import { contactsApi } from 'redux/contactsApi';
+import { contactsApi } from 'redux/contacts/contactsApi';
 import { authApi } from './auth/authApi';
 import { authSlice } from './auth/auth-slice';
 

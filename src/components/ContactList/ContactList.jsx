@@ -1,5 +1,5 @@
 import {  getFilter } from 'redux/filter/filter-selector';
-import { useGetContactsQuery } from 'redux/contactsApi'
+import { useGetContactsQuery } from 'redux/contacts/contactsApi'
 import { ContactItem } from 'components/ContactItem/ContactItem';
 import { List } from './ContactList.styled';
 import {useSelector } from 'react-redux';
