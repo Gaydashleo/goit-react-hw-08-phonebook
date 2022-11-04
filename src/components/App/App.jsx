@@ -5,7 +5,7 @@ import { Container} from './App.styled';
 
 
 import { lazy, Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 
 import { ToastContainer } from 'react-toastify';
@@ -29,7 +29,7 @@ const RegisterPage = lazy(() =>
 );
 
 const ContactsPage = lazy(() =>
-  import('pages/ContactsPage' /* webpackChunkName: "ContactsPage" */)
+  import('pages/ContactsView' /* webpackChunkName: "ContactsPage" */)
 );
 
 
