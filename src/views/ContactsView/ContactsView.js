@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { contactsOperations } from '../../redux/contacts';
-import ContactForm from '../components/ContactForm';
-import Filter from '../components/Filter';
-import ContactList from '../components/ContactList';
+import ContactForm from '../../components/ContactForm';
+import Filter from '../../components/Filter';
+import ContactList from '../../components/ContactList';
 
 export default function ContactsView() {
   const dispatch = useDispatch();

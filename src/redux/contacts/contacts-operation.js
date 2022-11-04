@@ -9,7 +9,7 @@ import {
   deleteContactRequest,
   deleteContactSuccess,
   deleteContactError,
-} from './contacts-actions';
+} from './contacts-action';
 import { toast } from 'react-toastify';
 
 export const fetchContacts = () => dispatch => {
