@@ -3,7 +3,7 @@ import { contactsActions, contactsSelectors } from '../../redux/contacts';
 
 import { Label, Input } from './Filter.styled';
 
-export function Filter() {
+export default function Filter() {
   const filter = useSelector(contactsSelectors.getFilter);
   const dispatch = useDispatch();
 

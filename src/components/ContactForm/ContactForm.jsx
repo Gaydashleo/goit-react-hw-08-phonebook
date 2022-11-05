@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { contactsOperations, contactsSelectors } from '../../redux/contacts';
-
-// import { Report } from 'notiflix/build/notiflix-report-aio';
 import { toast } from 'react-toastify';
-// import { nanoid } from 'nanoid';
-import { Form, Label, Input, Button } from './ContactForm.styled';   
+import Button from '@material-ui/core/Button';
+import s from './ContactForm.module.css';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
@@ -87,14 +85,12 @@ export default function ContactForm() {
     setPhone('');
   };
 
-  
-
-
     return (
-      <Form onSubmit={handleSubmit}>
-        <Label >
+      <form className={s.form} onSubmit={handleSubmit}>
+        <label className={s.label}>
           Name
-          <Input
+          <input
+            className={s.input}
             type="text"
             name="name"
             value={name}
@@ -104,11 +100,12 @@ export default function ContactForm() {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
-        </Label>
+        </label>
 
-        <Label >
+        <label className={s.label}>
           Number
-          <Input
+          <input
+            className={s.input}
             type="tel"
             name="number"
             value={phone}
@@ -117,16 +114,20 @@ export default function ContactForm() {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
-        </Label>
+        </label>
 
-        <Button
-          variant="contained"
-          type="submit"
-        >  
-        Add contact
-        </Button>
+        {!isLoading && (
+          <Button
+            variant="contained"
+            type="submit"
+            color="secondary"
+            size="large"
+          >
+            Add contact
+          </Button>
+        )}
         {isLoading && <p>Loading...</p>}
-      </Form>
+      </form>
     );
   }
 

@@ -8,21 +8,21 @@ import { authSelectors } from '../redux/auth';
  * - В противном случае рендерит компонент
  */
 export default function PublicRoute({
-  isAuthenticated,
-  redirectTo,
-  children,
-  ...routeProps
+    isAuthenticated,
+    redirectTo,
+    children,
+    ...routeProps
 }) {
-  const isLoggedIn = useSelector(authSelectors.getIsAuthenticated);
+    const isLoggedIn = useSelector(authSelectors.getIsAuthenticated);
 
-  return (
-    <Route {...routeProps}>
-      {isLoggedIn && routeProps.restricted ? (
-        <Navigate to={redirectTo} />
-      ) : (
-        children
-      )}
-    </Route>
-  );
+    return (
+        <Route {...routeProps}>
+            {isLoggedIn && routeProps.restricted ? (
+                <Navigate to={redirectTo} />
+            ) : (
+                children
+            )}
+        </Route>
+    );
 }
 

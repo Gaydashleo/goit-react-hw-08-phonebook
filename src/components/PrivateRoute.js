@@ -12,13 +12,13 @@ export default function PrivateRoute({
   children,
   ...routeProps
 }) {
-  const isLoggedIn = useSelector(authSelectors.getIsAuthenticated); 
-  return (
-    <Route {...routeProps}>
-      {isLoggedIn ? children : <Navigate to={redirectTo} />}
-    </Route>
-  );
-    }
+  const isLoggedIn = useSelector(authSelectors.getIsAuthenticated);
+   return (
+        <Route {...routeProps}>
+            {isLoggedIn ? children : <Navigate to={redirectTo} />}
+        </Route>
+    );
+}
 
 
 
