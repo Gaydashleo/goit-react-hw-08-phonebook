@@ -125,7 +125,7 @@ export default function ContactForm() {
         >  
         Add contact
         </Button>
-        {isLoading &&<p>Loading...</p>}
+        {isLoading && <p>Loading...</p>}
       </Form>
     );
   }

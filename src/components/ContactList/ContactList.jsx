@@ -1,40 +1,63 @@
-import {  getFilter } from 'redux/filter/filter-selector';
-import { useGetContactsQuery } from 'redux/contacts/contactsApi'
-import { ContactItem } from 'components/ContactItem/ContactItem';
-import { List } from './ContactList.styled';
-import {useSelector } from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux';
+import { contactsOperations, contactsSelectors } from '../../redux/contacts';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { motion, AnimatePresence } from 'framer-motion';
+// import { List } from './ContactList.styled';   
 
-export const ContactList = () => {
-  const { data: contacts, isLoading, error } = useGetContactsQuery();
-  const filter = useSelector(getFilter);
+export default function ContactList() {
+  const dispatch = useDispatch();
+  const visibleContacts = useSelector(contactsSelectors.getVisibleContacts);
+  const contacts = useSelector(contactsSelectors.getContacts);
 
-  const filteredContactList = () => {
-    if (!filter) {
-      return contacts;
-    }
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
-  };
-        
-  return (
-    <List>
-      {isLoading && <p> Loading...</p>}
-      {error && <p> {error.data}</p>}
-      {contacts && filteredContactList().map(({ id, name, phone }) => (
-        <ContactItem
-          key={id}
-          id={id}
-          name={name}
-          phone={phone}
-        />
-      ))}
-      </List>
+   return (
+    <>
+      {contacts.length > 0 && (
+        <motion.ul >
+          <AnimatePresence>
+            {visibleContacts.map(({ id, name, number }) => (
+              <motion.li
+                
+                key={id}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition="transition"
+                
+              >
+                <p >
+                  <b>{name}</b>
+                  <em>{number}</em>
+                </p>
+                <IconButton
+                  aria-label="delete"
+                  color="secondary"
+                  type="button"
+                  onClick={() => dispatch(contactsOperations.deleteContact(id))}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </motion.li>
+            ))}
+          </AnimatePresence>
+        </motion.ul>
+      )}
+
+      {!contacts.length && (
+        <AnimatePresence>
+          <motion.p
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition="transition"
+            
+          >
+            Your phonebook is empty. Please add contact.
+          </motion.p>
+        </AnimatePresence>
+      )}
+    </>
   );
-};
-
-
-
-
+}
 
 
