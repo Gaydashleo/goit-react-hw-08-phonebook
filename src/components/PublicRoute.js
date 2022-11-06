@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Navigate } from 'react-router-dom';
 import {useSelector } from 'react-redux';
-import { authSelectors } from '../redux/auth';
+import {getIsLoggedIn } from '../redux/auth/authSelectors';
 
 /**
  * - Если маршрут ограниченный, и пользователь залогинен, рендерит редирект на /todos
@@ -13,7 +13,7 @@ export default function PublicRoute({
     children,
     ...routeProps
 }) {
-    const isLoggedIn = useSelector(authSelectors.getIsAuthenticated);
+    const isLoggedIn = useSelector(getIsLoggedIn);
 
     return (
         <Route {...routeProps}>

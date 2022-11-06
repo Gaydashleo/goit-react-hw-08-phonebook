@@ -1,4 +1,4 @@
-import {  getFilter } from 'redux/filter/filter-selector';
+
 import { useGetContactsQuery } from 'redux/contacts/contactsApi'
 import { ContactItem } from 'components/ContactItem/ContactItem';
 import { List } from './ContactList.styled';
@@ -6,7 +6,7 @@ import {useSelector } from 'react-redux';
 
 export const ContactList = () => {
   const { data: contacts, isLoading, error } = useGetContactsQuery();
-  const filter = useSelector(getFilter);
+  const filter = useSelector(state => state.filter);
 
   const filteredContactList = () => {
     if (!filter) {

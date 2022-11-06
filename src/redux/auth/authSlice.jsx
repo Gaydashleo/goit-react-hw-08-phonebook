@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import authOperetions from './authOperations';
+import authOperetions from './authOperation';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
