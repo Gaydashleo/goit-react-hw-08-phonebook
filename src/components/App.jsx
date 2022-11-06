@@ -1,3 +1,4 @@
+
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect,  lazy, Suspense } from 'react';
@@ -7,8 +8,8 @@ import  PublicRoute  from './PublicRoute';
 import { Loader } from './Loader/Loader';
 import  NotFound  from '../components/NotFound/NotFound';
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 
 const Layout = lazy(() => import('./Layout')) ;
@@ -27,31 +28,25 @@ export function App() {
 
     return (
     <>
-        <Suspense fallback={<Loader />} >
+      <Suspense fallback={<Loader />} >
           {!isRefreshing && (
-            <Routes>
-              <Route path="/" element={<Layout />} >
-                <Route index element=
-                  {<PublicRoute><HomeView /></PublicRoute>}>
+          <Routes>
+            <Route path="/" element={<Layout />} >
+                <Route index element={<HomeView />} />
+                <Route element={<PublicRoute />} >
+              <Route path='/register' element={<RegisterView/>}/>
+                  <Route path="/login" element={<LoginView />} />
                 </Route>
-
-                <Route path='/register' element={<PublicRoute restricted><RegisterView /> </PublicRoute>}>
+                <Route element={<PrivateRoute />} >
+                  <Route path="/contacts" element={<ContactsView />} />
                 </Route>
-
-                <Route path="/login" element={<PublicRoute restricted><LoginView /> </PublicRoute>}>
                 </Route>
-         
-                <Route path="/contacts" element={<PrivateRoute restricted><ContactsView /> </PrivateRoute>}>
-                </Route>
-         
-                <Route path="*" element={<PublicRoute><NotFound /></PublicRoute>}>
-                </Route>
-              </Route>
-            </Routes>
-          )}
+              <Route path="*" element={<NotFound />}/>
+          </Routes>
+                )}
         </Suspense>
         
-        <ToastContainer autoClose={3700} position="top-center" />
+        {/* <ToastContainer autoClose={3700} position="top-center" /> */}
  
         </>
     );
