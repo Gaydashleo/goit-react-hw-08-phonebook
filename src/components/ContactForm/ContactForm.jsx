@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Form, Label, Input, Button } from './ContactForm.styled';
 import { Report } from 'notiflix/build/notiflix-report-aio';
-import { useGetContactsQuery, useAddContactMutation, } from 'redux/contactsApi';
+import { useGetContactsQuery, useAddContactMutation, } from 'redux/contacts/contactsApi';
 import { nanoid } from 'nanoid';
    
 
