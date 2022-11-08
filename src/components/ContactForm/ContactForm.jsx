@@ -1,31 +1,38 @@
 import { useEffect } from "react";
-import { Formik,Field } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Button from '@mui/material/Button';
 
 import {useGetContactsQuery, useAddContactMutation } from '../../redux/contacts/contactsSliceApi';
-import { LabelForm, SpanForm, Title, FormWrap, ContactFormWrap } from './ContactForm.styled';
+import { LabelForm, SpanForm, Title } from './ContactForm.styled';
 import { Loader } from "components/Loader/Loader";
 
-export function ContactForm()  {
+export const ContactForm = () => {
+
     const [addContact, result] = useAddContactMutation();
+    // console.log(result);
     const { data: contacts } = useGetContactsQuery();
 
     const handleSubmit = ({ name, number }, { resetForm }) => {
-        
+        // console.log({ name, number });
         contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase())
-            ? Notify.failure(`${name} is already in contacts.`,)
+            ? Notify.failure(
+                `${name} is already in contacts.`,
+            )
             : addContact({ name, number }) && resetForm();
-            };
+        
+        
+    };
 
     useEffect((name) => {
             if (result.isSuccess) {
                 Notify.success(`The ${name} has been added to your contact list.`);
-                };
-            }, [result.isSuccess]);
+                
+            };
+        }, [result.isSuccess]);
     
     return (
-        <ContactFormWrap>
+        <>
         {result.isLoading && <Loader/>}
         
         <Title>Contacts</Title>
@@ -34,10 +41,10 @@ export function ContactForm()  {
             initialValues={{ name: '', number: '' }}
             onSubmit={handleSubmit}
         >
-        <FormWrap >
-            <LabelForm>
-                <SpanForm>Name</SpanForm> 
-                <Field
+            <Form >
+                <LabelForm>
+                    <SpanForm>Name</SpanForm> 
+                    <Field
                         type="text"
                         name="name"
                         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -56,9 +63,9 @@ export function ContactForm()  {
                     />
                 </LabelForm>
                     <Button variant="contained" color="primary" size="small" type="submit" disabled={result.isLoading} >Add Contact</Button>
-            </FormWrap>
+            </Form>
             </Formik>
             
-        </ContactFormWrap>
+        </>
     );
 };

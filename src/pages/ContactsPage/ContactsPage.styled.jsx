@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
 
 export const Text = styled.h1`
-    font-size: 20px;
+    font-size: 16px;
     text-transform: uppercase;
-    text-align: center;
     font-weight: 700;
     color: #33C1FF;
     margin-bottom: 30px;

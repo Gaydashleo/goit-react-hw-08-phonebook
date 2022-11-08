@@ -17,14 +17,11 @@ export function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(state => state.auth.isRefreshing);
   
-
   useEffect(() => {
     dispatch(authOperetions.refreshCurrentUser());
   }, [dispatch])
 
- 
-
-  return (
+   return (
     <>
       <Suspense fallback={<Loader />}>
         {!isRefreshing && (

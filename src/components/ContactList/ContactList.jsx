@@ -6,6 +6,7 @@ import { useGetContactsQuery } from '../../redux/contacts/contactsSliceApi';
 import { ContactItem } from '../ContactItem/ContactItem';
 import { Loader } from '../Loader/Loader';
 
+
 export const ContactList = () => {
 
   const { data: contacts, error, isLoading, refetch } = useGetContactsQuery();

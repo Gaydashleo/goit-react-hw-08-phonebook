@@ -11,7 +11,7 @@ export const ContactItem = ({name, number, id}) => {
     return (
         <>
             <p>{name} : {number} </p>
-            <Button variant="outlined" startIcon={<DeleteIcon />} color="primary" size="small"
+            <Button variant="contained" startIcon={<DeleteIcon />} color="primary" size="small"
                 type="button"
                 onClick={() => deleteContact(id)}
                 contactId={id}
