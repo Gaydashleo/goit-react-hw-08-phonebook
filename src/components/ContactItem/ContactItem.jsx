@@ -1,28 +1,25 @@
-import PropTypes from 'prop-types';
-import { useDeleteContactMutation } from 'redux/contacts/contactsApi';
-import { Button } from './ContactItem.styled';
+import React from "react";
+import { useDeleteContactMutation } from '../../redux/contacts/contactsSliceApi';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-export const ContactItem = ({ id, name, phone }) => {
-  const [onDeleteContact, result ] = useDeleteContactMutation();
-  return (
+
+export const ContactItem = ({name, number, id}) => {
+    
+    const [deleteContact, result] = useDeleteContactMutation();
+    
+    return (
         <>
-      <p>
-        {name}: {phone}
-      </p>
-      <Button
-        type="button"
-        contactId={id}
-        disabled={result.isLoading}
-        onClick={() => onDeleteContact(id)}>
-        Delete
-      </Button>
-    </>
-    );
-};
-
-ContactItem.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  phone: PropTypes.string,
-  onDeleteContact: PropTypes.func,
-};
+            <p>{name} : {number} </p>
+            <Button variant="outlined" startIcon={<DeleteIcon />} color="primary" size="small"
+                type="button"
+                onClick={() => deleteContact(id)}
+                contactId={id}
+                disabled={result.isLoading}
+            >
+                Delete
+            </Button>
+            
+        </>
+    )
+}

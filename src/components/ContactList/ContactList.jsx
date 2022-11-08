@@ -1,40 +1,42 @@
+import React, {useEffect} from "react";
+import { useSelector } from 'react-redux';
 
-import { useGetContactsQuery } from 'redux/contacts/contactsApi'
-import { ContactItem } from 'components/ContactItem/ContactItem';
-import { List } from './ContactList.styled';
-import {useSelector } from 'react-redux';
+import { ItemContact } from './ContactList.styled';
+import { useGetContactsQuery } from '../../redux/contacts/contactsSliceApi';
+import { ContactItem } from '../ContactItem/ContactItem';
+import { Loader } from '../Loader/Loader';
 
 export const ContactList = () => {
-  const { data: contacts, isLoading, error } = useGetContactsQuery();
-  const filter = useSelector(state => state.filter);
 
-  const filteredContactList = () => {
-    if (!filter) {
+  const { data: contacts, error, isLoading, refetch } = useGetContactsQuery();
+  const filter = useSelector(state => state.filter);
+ 
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
+    
+  const filtredContacts = () => {
+      if (!filter) {
       return contacts;
     }
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
-        
-  return (
-    <List>
-      {isLoading && <p> Loading...</p>}
-      {error && <p> {error.data}</p>}
-      {contacts && filteredContactList().map(({ id, name, phone }) => (
-        <ContactItem
-          key={id}
-          id={id}
-          name={name}
-          phone={phone}
-        />
-      ))}
-      </List>
-  );
-};
 
-
-
-
-
-
+    return (    
+      <ul>
+        {error && <p>{error.data}</p>}
+        {isLoading ? (<Loader />) : ''}
+        {contacts && 
+        filtredContacts().map(({name, number, id}) => {
+          return (
+            <ItemContact key={id}>
+              <ContactItem name={name} number={number} id={id} />
+            </ItemContact>
+            );
+            })
+        }
+      </ul>
+    );
+}

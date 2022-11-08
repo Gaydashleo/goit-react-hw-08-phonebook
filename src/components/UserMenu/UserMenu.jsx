@@ -1,35 +1,29 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getName } from '../../redux/auth/authSelectors';
-import authOperations from '../../redux/auth/authOperation';
 import { useNavigate } from 'react-router-dom';
-// import defaultAvatar from '../../img/Avatar';
 import Button from '@mui/material/Button';
-import { UserWrap, UserText, UserName } from './UserMenu.styled';
 
-export default function UserMenu() {
-const dispatch = useDispatch();
+import { getName } from '../../redux/auth/authSelectors';
+import authOperetions from 'redux/auth/authOperations';
+import { UserMenuWrap, UserMenuText, UserMenuName } from './UserMenu.styled';
+
+export const UserMenu = () => {
+
+  const dispatch = useDispatch();
   const user = useSelector(getName);
   const navigate = useNavigate();
 
+
   const onLogOut = () => {
-    dispatch(authOperations.logOut());
+    dispatch(authOperetions.logOut());
     navigate('/');
   }
 
-
-  return (
-    <UserWrap>
-      {/* <img src={defaultAvatar}
-        alt="Default Avatar"
-        width="32" /> */}
-      <UserText> WELCOME, <UserName> {user} ! </UserName></UserText>
-      <Button
-        variant="contained"
-        color="error"
-        size="small"
-        type="button"
-        onClick={onLogOut}>
+    return (
+        <UserMenuWrap >
+      <UserMenuText >Welcome, <UserMenuName>{user} !</UserMenuName> </UserMenuText>
+      <Button variant="contained" color="primary" size="small" type="button" onClick = {onLogOut} >
+        Logout
       </Button>
-    </UserWrap>
-  )
+    </UserMenuWrap>
+    )
 }

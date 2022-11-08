@@ -1,25 +1,7 @@
-import styled from 'styled-components';
+import styled from "@emotion/styled";
 
-export const Container = styled.div`
-  padding: 15px 30px;
+export const Message = styled.p`
+    font-weight: 500;
+    color: #33C1FF;
 `;
 
-export const Section = styled.section`
-  &:not(:last-child) {
-    margin-bottom: 15px;
-  }
-`;
-
-export const Titleh1 = styled.h1`
-  margin-bottom: 15px;
-  font-size: 28px;
-  font-weight: bold;
-  
-
-`;
-
-export const Titleh2 = styled.h2`
-  margin-bottom: 15px;
-  font-size: 22px;
-  font-weight: bold;
-`;

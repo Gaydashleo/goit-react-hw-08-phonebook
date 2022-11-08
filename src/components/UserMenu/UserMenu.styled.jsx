@@ -1,16 +1,18 @@
-import styled from 'styled-components';
+import styled from "@emotion/styled";
 
-export const UserWrap = styled.div`
-  display: flex;
+export const UserMenuWrap = styled.div`
+    display: flex;
     align-items: center;
-  `;
-
-  export const UserText = styled.p`
-  display: flex;
-    align-items: center;
-  `;
-
-export const UserName = styled.span`
-   font-weight: 500;
-    color: #d40b0b;
+    gap: 12px;
 `;
+
+export const UserMenuText = styled.p`
+    font-weight: 700;
+    color: #3336FF;
+`;
+
+export const UserMenuName = styled.span`
+    font-weight: 500;
+    color: #33C1FF;
+`;
+

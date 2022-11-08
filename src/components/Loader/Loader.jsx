@@ -5,7 +5,7 @@ export const Loader = () => {
     return (
         <LoaderBox>
             <RotatingLines
-                strokeColor="#00b4ff"
+                strokeColor="#33C1FF"
                 strokeWidth="5"
                 animationDuration="0.75"
                 width="96"
@@ -13,4 +13,6 @@ export const Loader = () => {
             />
         </LoaderBox>
     );
-}
+
+};
+

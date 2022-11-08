@@ -1,5 +1,4 @@
-@import-normalize;/* bring in normalize.css styles */
-
+@import-normalize; /* bring in normalize.css styles */
 
 body {
   margin: 0;
@@ -15,12 +14,12 @@ code {
     monospace;
 }
 
-div {
+div{
   margin-left: 30px;
   margin-right: 30px;
 }
 
-h1,
-h2 {
+h1, h2{
   color: rgb(56, 12, 98);
 }
+

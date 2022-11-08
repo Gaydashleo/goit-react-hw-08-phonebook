@@ -1,11 +1,18 @@
 import { NavLink } from 'react-router-dom';
 
-export default function NotFound({data, status }) {
+function NotFound({ data, status }) {
   return (
-    <>
-      <h2> Sorry {data} {status} </h2>
-      <p>We have mistake</p>
-      <NavLink to="/">Go back</NavLink>
-    </>
-  )
+    
+      <div>
+        <h1>
+          Sorry {status} {data} 
+        </h1>
+        <p>Something went wrong.</p>
+        <NavLink to="/">Go back to the main page</NavLink>
+      </div>
+  
+  );
 }
+
+
+export default NotFound;
